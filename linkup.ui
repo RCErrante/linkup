@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>753</width>
-    <height>507</height>
+    <height>537</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -21,19 +21,6 @@
   </property>
   <property name="statusTip">
    <string extracomment="Welcome to LINKUp"/>
-  </property>
-  <property name="styleSheet">
-   <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px solid #555;
-    border-radius: 2px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px solid#555;
-border-radius:2px;
-}</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -78,9 +65,6 @@ QTabWidget::pane { /* The tab widget frame */
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
           <property name="title">
            <string/>
           </property>
@@ -96,7 +80,7 @@ border-radius:2px;
 QGroupBox {
 	background-color:lightgray;
     border: 2px groove gray;
-    border-radius: 2px;
+    border-radius: 5px;
 }</string>
              </property>
              <property name="title">
@@ -228,7 +212,16 @@ color:blue;
            <item row="0" column="1">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 5px;
+}
+QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}</string>
              </property>
              <property name="title">
               <string/>
@@ -400,7 +393,17 @@ color:blue;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 5px;
+}
+
+QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}</string>
              </property>
              <property name="title">
               <string/>
@@ -674,8 +677,17 @@ color:blue;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true">QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 5px;
+}
+
+QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}</string>
           </property>
           <property name="title">
            <string/>
@@ -818,7 +830,17 @@ color:blue;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 5px;
+}
+
+QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}</string>
              </property>
              <property name="title">
               <string>Configuration Values</string>
@@ -969,13 +991,13 @@ color:blue;
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>23</height>
+                    <height>24</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>23</height>
+                    <height>24</height>
                    </size>
                   </property>
                   <property name="text">
@@ -988,13 +1010,13 @@ color:blue;
                   <property name="minimumSize">
                    <size>
                     <width>60</width>
-                    <height>23</height>
+                    <height>24</height>
                    </size>
                   </property>
                   <property name="maximumSize">
                    <size>
                     <width>60</width>
-                    <height>23</height>
+                    <height>24</height>
                    </size>
                   </property>
                   <property name="text">
@@ -1002,17 +1024,11 @@ color:blue;
                   </property>
                  </widget>
                 </item>
-                <item row="7" column="0" alignment="Qt::AlignHCenter">
+                <item row="7" column="0">
                  <widget class="QPushButton" name="findFLDIGIButton">
-                  <property name="minimumSize">
-                   <size>
-                    <width>75</width>
-                    <height>23</height>
-                   </size>
-                  </property>
                   <property name="maximumSize">
                    <size>
-                    <width>75</width>
+                    <width>16777215</width>
                     <height>16777215</height>
                    </size>
                   </property>
@@ -1035,7 +1051,15 @@ color:blue;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true"/>
+              <string notr="true">QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 3px;
+}</string>
              </property>
              <property name="title">
               <string>FLDIGI options</string>
@@ -1173,7 +1197,7 @@ Click the Cancel button to discard any changes.</string>
            <string notr="true">QGroupBox {
     background-color:#93afd2;
     border: 2px groove gray;
-    border-radius: 2px;
+    border-radius: 5px;
 }
 
 QPushButton {
@@ -1627,7 +1651,17 @@ border-radius:2px;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">QGroupBox {
+    background-color:#93afd2;
+    border: 2px groove gray;
+    border-radius: 5px;
+}
+
+QPushButton {
+ background-color:darkgray;
+border:2px groove gray;
+border-radius:2px;
+}</string>
           </property>
           <property name="title">
            <string/>
@@ -1660,14 +1694,14 @@ border-radius:2px;
             <widget class="QPushButton" name="modemsSaveButton">
              <property name="minimumSize">
               <size>
-               <width>50</width>
-               <height>23</height>
+               <width>0</width>
+               <height>17</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
                <width>50</width>
-               <height>23</height>
+               <height>16777215</height>
               </size>
              </property>
              <property name="text">
@@ -1679,14 +1713,14 @@ border-radius:2px;
             <widget class="QPushButton" name="modemsCancelButton">
              <property name="minimumSize">
               <size>
-               <width>50</width>
-               <height>23</height>
+               <width>0</width>
+               <height>17</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
                <width>50</width>
-               <height>23</height>
+               <height>16777215</height>
               </size>
              </property>
              <property name="text">
@@ -1729,20 +1763,113 @@ border-radius:2px;
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
+  <tabstop>orderWireLineEdit</tabstop>
   <tabstop>LINKUpButton</tabstop>
+  <tabstop>QRUButton</tabstop>
+  <tabstop>QRVButton</tabstop>
   <tabstop>QSLButton</tabstop>
+  <tabstop>resetButton</tabstop>
   <tabstop>FileXferButton</tabstop>
-  <tabstop>SPTextArea</tabstop>
-  <tabstop>cfgHelpTextArea</tabstop>
+  <tabstop>smarqButton</tabstop>
+  <tabstop>abortButton</tabstop>
+  <tabstop>modemComboBox</tabstop>
+  <tabstop>delCallButton</tabstop>
+  <tabstop>destCallLineEdit</tabstop>
+  <tabstop>EMCONCheckbox</tabstop>
+  <tabstop>logButton</tabstop>
   <tabstop>CONFCallSign</tabstop>
   <tabstop>CONFName</tabstop>
+  <tabstop>CONFGrid</tabstop>
   <tabstop>CONFXMLRPCIP</tabstop>
   <tabstop>CONFXMLRPCTCPPort</tabstop>
-  <tabstop>CONFGrid</tabstop>
   <tabstop>beaconIntervalLineEdit</tabstop>
   <tabstop>useZULUCheckbox</tabstop>
-  <tabstop>modemsSaveButton</tabstop>
+  <tabstop>findFLDIGIButton</tabstop>
+  <tabstop>fldigiPathLineEdit</tabstop>
+  <tabstop>fldigiCmdsLineEdit</tabstop>
+  <tabstop>autoStartFLDIGICheckBox</tabstop>
+  <tabstop>cfgCancelButton</tabstop>
+  <tabstop>cfgSaveButton</tabstop>
+  <tabstop>fldigiLockCheckBox</tabstop>
+  <tabstop>fldigiCenterLineEdit</tabstop>
+  <tabstop>fldigiUsePSMCheckBox</tabstop>
+  <tabstop>fldigiDefModemLineEdit</tabstop>
+  <tabstop>fldigiUseCurrentModemButton</tabstop>
+  <tabstop>SPSendAllButton</tabstop>
+  <tabstop>SPSendSeletctedButton</tabstop>
+  <tabstop>sPClearButton</tabstop>
+  <tabstop>SPTextArea</tabstop>
   <tabstop>modemsCancelButton</tabstop>
+  <tabstop>tabbedWidget</tabstop>
+  <tabstop>cfgHelpTextArea</tabstop>
+  <tabstop>receiveTextArea</tabstop>
+  <tabstop>modemsSaveButton</tabstop>
+  <tabstop>SPFORMSButton</tabstop>
+  <tabstop>heardList</tabstop>
+  <tabstop>SPSaveButton</tabstop>
+  <tabstop>SPSaveAsButton</tabstop>
+  <tabstop>SPOpenFileButton</tabstop>
+  <tabstop>checkBox_48</tabstop>
+  <tabstop>checkBox_60</tabstop>
+  <tabstop>checkBox_36</tabstop>
+  <tabstop>checkBox_2</tabstop>
+  <tabstop>checkBox_24</tabstop>
+  <tabstop>checkBox_49</tabstop>
+  <tabstop>checkBox_38</tabstop>
+  <tabstop>checkBox_25</tabstop>
+  <tabstop>checkBox_12</tabstop>
+  <tabstop>checkBox_13</tabstop>
+  <tabstop>checkBox_50</tabstop>
+  <tabstop>checkBox_37</tabstop>
+  <tabstop>checkBox_26</tabstop>
+  <tabstop>checkBox_11</tabstop>
+  <tabstop>checkBox_14</tabstop>
+  <tabstop>checkBox_51</tabstop>
+  <tabstop>checkBox_39</tabstop>
+  <tabstop>checkBox_27</tabstop>
+  <tabstop>checkBox_10</tabstop>
+  <tabstop>checkBox_15</tabstop>
+  <tabstop>checkBox_52</tabstop>
+  <tabstop>checkBox_40</tabstop>
+  <tabstop>checkBox_28</tabstop>
+  <tabstop>checkBox_9</tabstop>
+  <tabstop>checkBox_16</tabstop>
+  <tabstop>checkBox_53</tabstop>
+  <tabstop>checkBox_41</tabstop>
+  <tabstop>checkBox_29</tabstop>
+  <tabstop>checkBox_8</tabstop>
+  <tabstop>checkBox_17</tabstop>
+  <tabstop>checkBox_54</tabstop>
+  <tabstop>checkBox_42</tabstop>
+  <tabstop>checkBox_30</tabstop>
+  <tabstop>checkBox_7</tabstop>
+  <tabstop>checkBox_18</tabstop>
+  <tabstop>checkBox_55</tabstop>
+  <tabstop>checkBox_43</tabstop>
+  <tabstop>checkBox_31</tabstop>
+  <tabstop>checkBox_6</tabstop>
+  <tabstop>checkBox_19</tabstop>
+  <tabstop>checkBox_56</tabstop>
+  <tabstop>checkBox_44</tabstop>
+  <tabstop>checkBox_32</tabstop>
+  <tabstop>checkBox_5</tabstop>
+  <tabstop>checkBox_20</tabstop>
+  <tabstop>checkBox_57</tabstop>
+  <tabstop>checkBox_45</tabstop>
+  <tabstop>checkBox_33</tabstop>
+  <tabstop>checkBox_4</tabstop>
+  <tabstop>checkBox_21</tabstop>
+  <tabstop>checkBox_58</tabstop>
+  <tabstop>checkBox_46</tabstop>
+  <tabstop>checkBox_34</tabstop>
+  <tabstop>checkBox_3</tabstop>
+  <tabstop>checkBox_22</tabstop>
+  <tabstop>checkBox_59</tabstop>
+  <tabstop>checkBox_47</tabstop>
+  <tabstop>checkBox_35</tabstop>
+  <tabstop>checkBox</tabstop>
+  <tabstop>checkBox_23</tabstop>
+  <tabstop>modemsSelectAllCheckbox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
