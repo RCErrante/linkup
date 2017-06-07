@@ -35,9 +35,6 @@ QTimer centerTimer;
 QTimer *beaconTimer;
 QTimer * rxTimer;
 QProcess *fldigiProcess;
-ARQPitcher * p = 0;
-ARQCatcher * c = 0;
-
 LINKUp::LINKUp(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LINKUp)
@@ -78,7 +75,8 @@ LINKUp::LINKUp(QWidget *parent) :
     int interval = settings->value(tr("beaconInterval"), "0").toInt();
     if ( interval > 0) {
         beaconTimer->start(interval * 60000);
-        QTimer::singleShot(5000, this, &LINKUp::on_beaconTimer);
+        QTimer::singleShot(5000, this, SLOT(on_beaconTimer));
+        //QTimer::singleShot(5000, this, &LINKUp::on_beaconTimer);
     }
     QString id(settings->value(tr("mycall"), "MYCALL").toString());
     if (id == "MYCALL" || id == "") {
@@ -90,10 +88,12 @@ LINKUp::LINKUp(QWidget *parent) :
         log.createLogFile();
         log.logEntry("Opened log file: ");
         // do the initial setu of FLDIGI controls
-        QTimer::singleShot(1000, this, &LINKUp::setupFLDIGI);
+        QTimer::singleShot(1500, this, SLOT(setupFLDIGI));
+        //QTimer::singleShot(1500, this, &LINKUp::setupFLDIGI);
     }
     QWidget::setWindowTitle(tr("LINKUp ver. ") + version);
 
+    // A place to test out some of the XMLRPC functions
 //    try {
 //        XmlRpc::XmlRpcValue testrv;
 //        bool b_res = xc->execute("modem.get_names", 0, testrv, 1);
@@ -356,7 +356,7 @@ void LINKUp::processIncomingData() {
 
 void LINKUp::processFrame(QByteArray inputBuffer) {
     // TODO: need to add handlers for SMARQ frames
-    qDebug()<<"processFrame:"<<inputBuffer;
+    //qDebug()<<"processFrame:"<<inputBuffer;
     bool proto1 = false;
     bool proto2 = false;
     int index = -1;
@@ -1165,8 +1165,7 @@ void LINKUp::autoStartFLDIGI(QString fldigiPath, QString args) {
 
 void LINKUp::reportFLDIGIFinished(int code, int exitStatus)
 {
-    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % "FLDIGI exited " %
-                                    (exitStatus == 0 ? "Normally" : "Crash") %"\nRestart LINKUp to recover.");
+    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % "\nRestart LINKUp to recover.");
     if(xc)
         xc->close();
     rxTimer->stop();
@@ -1199,10 +1198,8 @@ void LINKUp::on_fldigiUseCurrentModemButton_clicked()
 
 void LINKUp::on_smarqButton_clicked()
 {
-    if(!ui->fldigiUsePSMCheckBox->isChecked())
-        QMessageBox::information(this, "USE Power Squelch Monitor", "PSM is unchecked.  SMARQ will function better if\nPSM is checked and adjusted in FLDIGI.");
     b_inSMARQSession = true;
-    p = new ARQPitcher(this);
+    ARQPitcher * p = new ARQPitcher(this);
     connect(p, &ARQPitcher::sendBytes, this, &LINKUp::sendRawBytesToModem);
     connect(this, &LINKUp::smarqReply, p, &ARQPitcher::processIncoming);
     connect(p, &ARQPitcher::sessionFinished, this, &LINKUp::on_sessionFinished);
@@ -1214,7 +1211,7 @@ void LINKUp::on_smarqButton_clicked()
 void LINKUp::launchSMARQCatcher(QByteArray data)
 {
     b_inSMARQSession = true;
-    c = new ARQCatcher(this);
+    ARQCatcher *c = new ARQCatcher(this);
     connect(c, &ARQCatcher::sendBytes, this, &LINKUp::sendRawBytesToModem);
     connect(this, &LINKUp::smarqReply, c, &ARQCatcher::processInputFrame);
     connect(c, &ARQCatcher::sessionFinished, this, &LINKUp::on_sessionFinished);
@@ -1253,10 +1250,7 @@ void LINKUp::on_sessionFinished()
 
 void LINKUp::closeEvent(QCloseEvent *event)
 {
-    if(p)
-        p->close(); // destroy on close
-    if(c)
-        c->close(); // destroy on close
+
     b_closingDown = true;
     //qDebug()<<"closing down"<<b_closingDown;
     on_cfgSaveButton_clicked();
