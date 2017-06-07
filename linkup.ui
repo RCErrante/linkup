@@ -1116,6 +1116,9 @@ border-radius:2px;
               </item>
               <item row="0" column="2">
                <widget class="QCheckBox" name="fldigiUsePSMCheckBox">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
                 <property name="maximumSize">
                  <size>
                   <width>75</width>
