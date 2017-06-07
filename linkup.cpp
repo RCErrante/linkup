@@ -75,7 +75,7 @@ LINKUp::LINKUp(QWidget *parent) :
     int interval = settings->value(tr("beaconInterval"), "0").toInt();
     if ( interval > 0) {
         beaconTimer->start(interval * 60000);
-        QTimer::singleShot(5000, this, SLOT(on_beaconTimer));
+        QTimer::singleShot(5000, this, SLOT(on_beaconTimer()));
         //QTimer::singleShot(5000, this, &LINKUp::on_beaconTimer);
     }
     QString id(settings->value(tr("mycall"), "MYCALL").toString());
@@ -88,7 +88,7 @@ LINKUp::LINKUp(QWidget *parent) :
         log.createLogFile();
         log.logEntry("Opened log file: ");
         // do the initial setu of FLDIGI controls
-        QTimer::singleShot(1500, this, SLOT(setupFLDIGI));
+        QTimer::singleShot(2500, this, SLOT(setupFLDIGI()));
         //QTimer::singleShot(1500, this, &LINKUp::setupFLDIGI);
     }
     QWidget::setWindowTitle(tr("LINKUp ver. ") + version);
