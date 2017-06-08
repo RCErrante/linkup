@@ -30,11 +30,11 @@ XmlRpc::XmlRpcValue rv;
 QString DIR_PATH;
 //QTimer portTimer;
 // file object to pass around
-QFile *loadedFile;
-QTimer centerTimer;
-QTimer *beaconTimer;
-QTimer * rxTimer;
-QProcess *fldigiProcess;
+QFile *loadedFile = 0;
+QTimer *centerTimer = 0;
+QTimer *beaconTimer = 0;
+QTimer * rxTimer = 0;
+QProcess *fldigiProcess = 0;
 LINKUp::LINKUp(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LINKUp)
@@ -59,21 +59,21 @@ LINKUp::LINKUp(QWidget *parent) :
     loadModems();
     // trap the up arrow for retrieving prev order wire
     ui->orderWireLineEdit->installEventFilter(this);
-
-    connect(&centerTimer, &QTimer::timeout, this, &LINKUp::on_centerTimer);
-    connect(&centerTimer, &QTimer::timeout, this, &LINKUp::updateClock);
-    centerTimer.start(4000);
+    centerTimer = new QTimer(this);
+    connect(centerTimer, &QTimer::timeout, this, &LINKUp::on_centerTimer);
+    connect(centerTimer, &QTimer::timeout, this, &LINKUp::updateClock);
+    centerTimer->start(4000);
 
     // QTimer for handling receive monitoring
     rxTimer = new QTimer(this);
     connect(rxTimer, &QTimer::timeout, this, &LINKUp::processIncomingData);
     rxTimer->start(250);
 
-    // if beacon > 0 start the beacon timer and connect the
-    beaconTimer = new QTimer(this);
-    connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
     int interval = settings->value(tr("beaconInterval"), "0").toInt();
+    // if beacon > 0 start the beacon timer and connect the
     if ( interval > 0) {
+        beaconTimer = new QTimer(this);
+        connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
         beaconTimer->start(interval * 60000);
         QTimer::singleShot(5000, this, SLOT(on_beaconTimer()));
         //QTimer::singleShot(5000, this, &LINKUp::on_beaconTimer);
@@ -91,7 +91,7 @@ LINKUp::LINKUp(QWidget *parent) :
         QTimer::singleShot(2500, this, SLOT(setupFLDIGI()));
         //QTimer::singleShot(1500, this, &LINKUp::setupFLDIGI);
     }
-    QWidget::setWindowTitle(tr("LINKUp ver. ") + version);
+    setWindowTitle(tr("LINKUp ver. ") + version);
 
     // A place to test out some of the XMLRPC functions
 //    try {
@@ -238,12 +238,12 @@ void LINKUp::on_cfgSaveButton_clicked()
                 beaconTimer->start();
                 on_beaconTimer();
             }
-        } else {
+        } else if(beaconInterval > 0) {
             beaconTimer = new QTimer(this);
             connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
             if (beaconInterval > 0) {
                 beaconTimer->start(beaconInterval * 60000);
-                on_beaconTimer();
+                on_beaconTimer(); // go ahead and pop it
             }
         }
     }
@@ -677,7 +677,7 @@ void LINKUp::on_FileXferButton_clicked()
     // ending the file dialog should send the file immediately inside a
     // header which includes the original filename only (no path).
     const QString fileName = QFileDialog::getOpenFileName(this, "Open Binary File",".", "All Files (*)");
-    loadedFile = new QFile(fileName);
+    loadedFile = new QFile(fileName, this);
     //qDebug() << "SBF: loadedFile : " << loadedFile->fileName();
 
     if (!loadedFile->open(QIODevice::ReadOnly)) {
@@ -1165,13 +1165,15 @@ void LINKUp::autoStartFLDIGI(QString fldigiPath, QString args) {
 
 void LINKUp::reportFLDIGIFinished(int code, int exitStatus)
 {
-    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % "\nRestart LINKUp to recover.");
+    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % QString::number(exitStatus) % "\nRestart LINKUp to recover.");
     if(xc)
         xc->close();
-    rxTimer->stop();
-    beaconTimer->stop();
-    centerTimer.stop();
-
+    if (rxTimer)
+        rxTimer->stop();
+    if(beaconTimer)
+        beaconTimer->stop();
+    if (centerTimer)
+        centerTimer->stop();
 }
 
 void LINKUp::on_findFLDIGIButton_clicked()
@@ -1252,27 +1254,11 @@ void LINKUp::closeEvent(QCloseEvent *event)
 {
 
     b_closingDown = true;
-    //qDebug()<<"closing down"<<b_closingDown;
     on_cfgSaveButton_clicked();
-    if(fldigiProcess)
-    {
-        fldigiProcess->close();
-        fldigiProcess->deleteLater();
-    }
-    if(beaconTimer)
-    {
-        beaconTimer->stop();
-        beaconTimer->deleteLater();
-    }
-    if(rxTimer)
-    {
-        rxTimer->stop();
-        rxTimer->deleteLater();
-    }
-    if(loadedFile)
-        loadedFile->deleteLater();
     if(xc)
+    {
         xc->close();
+    }
     event->accept();
 }
 
