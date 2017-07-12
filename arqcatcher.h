@@ -58,6 +58,8 @@ private slots:
     void processFrame();
 private:
     Ui::ARQCatcher *ui;
+    QString s_sourceCall;
+    QString s_destCall;
     bool b_modemTransmitting = false;
     const QString SPACE = " ";
     void writeMessage();

@@ -33,31 +33,30 @@ class ARQPitcher : public QMainWindow
 public:
     explicit ARQPitcher(QWidget *parent = 0);
     ~ARQPitcher();
-
 public slots:
     void processIncoming(QByteArray inbytes);
     void on_modemReceiving();
     void on_modemReceivingData();
     void on_modemTransmitting();
+    void setDestCall(QString dest);
+    void setSourceCall(QString source);
 signals:
     void sendBytes(QByteArray data);
     void sessionFinished();
-
 private slots:
     void on_findButton_clicked();
-
     void on_startButton_clicked();
-
     bool frameUpTheFile(const QString fileName);
     //void on_readyRead();
     void on_responseTimeout();
     void sendFillQuery();
     void on_stopButton_clicked();
-
 private:
     Ui::ARQPitcher *ui;
     bool b_modemTransmitting = false;
     bool b_incomingData = false;
+    QString s_destCall;
+    QString s_sourceCall;
     void sendTheWholeBlob();
     QString createFillQuery();
 };

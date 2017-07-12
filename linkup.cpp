@@ -30,11 +30,11 @@ XmlRpc::XmlRpcValue rv;
 QString DIR_PATH;
 //QTimer portTimer;
 // file object to pass around
-QFile *loadedFile = 0;
-QTimer *centerTimer = 0;
-QTimer *beaconTimer = 0;
-QTimer * rxTimer = 0;
-QProcess *fldigiProcess = 0;
+QFile *loadedFile;
+QTimer centerTimer;
+QTimer *beaconTimer;
+QTimer * rxTimer;
+QProcess *fldigiProcess;
 LINKUp::LINKUp(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::LINKUp)
@@ -59,39 +59,39 @@ LINKUp::LINKUp(QWidget *parent) :
     loadModems();
     // trap the up arrow for retrieving prev order wire
     ui->orderWireLineEdit->installEventFilter(this);
-    centerTimer = new QTimer(this);
-    connect(centerTimer, &QTimer::timeout, this, &LINKUp::on_centerTimer);
-    connect(centerTimer, &QTimer::timeout, this, &LINKUp::updateClock);
-    centerTimer->start(4000);
+
+    connect(&centerTimer, &QTimer::timeout, this, &LINKUp::on_centerTimer);
+    connect(&centerTimer, &QTimer::timeout, this, &LINKUp::updateClock);
+    centerTimer.start(4000);
 
     // QTimer for handling receive monitoring
     rxTimer = new QTimer(this);
     connect(rxTimer, &QTimer::timeout, this, &LINKUp::processIncomingData);
     rxTimer->start(250);
 
-    int interval = settings->value(tr("beaconInterval"), "0").toInt();
     // if beacon > 0 start the beacon timer and connect the
+    beaconTimer = new QTimer(this);
+    connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
+    int interval = settings->value(tr("beaconInterval"), "0").toInt();
     if ( interval > 0) {
-        beaconTimer = new QTimer(this);
-        connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
         beaconTimer->start(interval * 60000);
         QTimer::singleShot(5000, this, SLOT(on_beaconTimer()));
         //QTimer::singleShot(5000, this, &LINKUp::on_beaconTimer);
     }
-    QString id(settings->value(tr("mycall"), "MYCALL").toString());
-    if (id == "MYCALL" || id == "") {
+    mycall = settings->value(tr("mycall"), "MYCALL").toString();
+    if (mycall == "MYCALL" || mycall == "") {
         ui->tabbedWidget->setCurrentIndex(2); // the Config tab
         qApp->processEvents();
         QMessageBox::information(this, "SET CALL SIGN","Please set the call sign on the CONF tab, then Save and RESTART LINKUp.");
     } else {
-        log.setStationID(id);
+        log.setStationID(mycall);
         log.createLogFile();
         log.logEntry("Opened log file: ");
         // do the initial setu of FLDIGI controls
-        QTimer::singleShot(2500, this, SLOT(setupFLDIGI()));
+        QTimer::singleShot(1500, this, SLOT(setupFLDIGI()));
         //QTimer::singleShot(1500, this, &LINKUp::setupFLDIGI);
     }
-    setWindowTitle(tr("LINKUp ver. ") + version);
+    QWidget::setWindowTitle(tr("LINKUp ver. ") + version);
 
     // A place to test out some of the XMLRPC functions
 //    try {
@@ -128,6 +128,7 @@ LINKUp::~LINKUp()
 void LINKUp::on_beaconTimer() {
     // skip this beacon if we are currently
     // receiving
+
     if (b_xmitInhibit)
         return;
     // otherwise also make sure we aren't
@@ -137,10 +138,27 @@ void LINKUp::on_beaconTimer() {
     if (ans != "rx")
         return;
     //qDebug() << "Beaconing...";
-    if (b_useZULUTime)
-        sendText(tr("http://linkup.sf.net ") + QDateTime::currentDateTimeUtc().toString(tr("HH:mm"))+ "Z", tr("ALL"));
+    QString btext;
+    if(!s_beaconFile.isEmpty())
+    {
+        // load the text from the beacon file
+        QFile bf(s_beaconFile);
+        if(!bf.open(QFile::ReadOnly))
+        {
+            ui->receiveTextArea->appendHtml(STYLE_RED % "Unable to open beacon text file." % END_HTML);
+            return;
+        }
+        btext = bf.readAll();
+        bf.close();
+    }
+    if (btext.isEmpty())
+        btext = "http://linkup.sf.net ";
     else
-        sendText(tr("http://linkup.sf.net ") + QDateTime::currentDateTime().toString(tr("HH:mm")), tr("ALL"));
+        btext.append(" ");
+    if (b_useZULUTime)
+        sendText("[" % QDateTime::currentDateTimeUtc().toString(tr("HH:mm")) % "Z]\n" % btext, tr("ALL"));
+    else
+        sendText("[" % QDateTime::currentDateTime().toString(tr("HH:mm"))+ "]\n" % btext, tr("ALL"));
 }
 
 void LINKUp::updateClock()
@@ -180,6 +198,8 @@ bool LINKUp::loadSettings() {
     ui->CONFGrid->setText(settings->value(tr("mygrid"),"").toString());
     ui->beaconIntervalLineEdit->setText(settings->value(tr("beaconInterval"), "0").toString());
     ui->useZULUCheckbox->setChecked(settings->value(tr("useZULUTime")).toBool());
+    s_beaconFile = settings->value(tr("beaconFile"), "").toString();
+    ui->beaconFileLabel->setText(s_beaconFile);
     ui->autoStartFLDIGICheckBox->setChecked(settings->value(tr("startFLDIGI"), "false").toBool());
     ui->fldigiPathLineEdit->setText(settings->value(tr("fldigiPath"), "").toString());
     ui->fldigiCmdsLineEdit->setText(settings->value(tr("fldigiCmdLine"), "").toString());
@@ -238,16 +258,17 @@ void LINKUp::on_cfgSaveButton_clicked()
                 beaconTimer->start();
                 on_beaconTimer();
             }
-        } else if(beaconInterval > 0) {
+        } else {
             beaconTimer = new QTimer(this);
             connect(beaconTimer, &QTimer::timeout, this, &LINKUp::on_beaconTimer);
             if (beaconInterval > 0) {
                 beaconTimer->start(beaconInterval * 60000);
-                on_beaconTimer(); // go ahead and pop it
+                on_beaconTimer();
             }
         }
     }
     settings->setValue(tr("useZULUTime"), b_useZULUTime);
+    settings->setValue(tr("beaconFile"), ui->beaconFileLabel->text());
     settings->setValue(tr("fldigiPath"), ui->fldigiPathLineEdit->text().trimmed());
     settings->setValue(tr("startFLDIGI"), ui->autoStartFLDIGICheckBox->isChecked());
     settings->setValue(tr("fldigiCmdLine"), ui->fldigiCmdsLineEdit->text().trimmed());
@@ -256,6 +277,7 @@ void LINKUp::on_cfgSaveButton_clicked()
     settings->setValue(tr("fldigiUsePSM"), ui->fldigiUsePSMCheckBox->isChecked());
     if(!b_closingDown)
         setupFLDIGI();
+
     //settings->setValue(tr("hexDump"), ui->hexDumpCheckbox->isChecked());
     settings->setValue("geometry", saveGeometry());
     settings->setValue("windowState", saveState());
@@ -293,7 +315,8 @@ void LINKUp::on_EMCONCheckbox_toggled(bool checked)
 
 void LINKUp::on_heardList_clicked(const QModelIndex &index)
 {
-    ui->destCallLineEdit->setText(ui->heardList->currentItem()->text());
+    //ui->destCallLineEdit->setText(ui->heardList->currentItem()->text());
+    ui->destCallLineEdit->setText(index.data().toString());
     ui->orderWireLineEdit->setFocus();
 }
 
@@ -677,7 +700,7 @@ void LINKUp::on_FileXferButton_clicked()
     // ending the file dialog should send the file immediately inside a
     // header which includes the original filename only (no path).
     const QString fileName = QFileDialog::getOpenFileName(this, "Open Binary File",".", "All Files (*)");
-    loadedFile = new QFile(fileName, this);
+    loadedFile = new QFile(fileName);
     //qDebug() << "SBF: loadedFile : " << loadedFile->fileName();
 
     if (!loadedFile->open(QIODevice::ReadOnly)) {
@@ -1165,15 +1188,13 @@ void LINKUp::autoStartFLDIGI(QString fldigiPath, QString args) {
 
 void LINKUp::reportFLDIGIFinished(int code, int exitStatus)
 {
-    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % QString::number(exitStatus) % "\nRestart LINKUp to recover.");
+    ui->receiveTextArea->appendHtml("<p><pre>FLDIGI has exited with exit code: " % QString::number(code) % " :Exit Status " % QString::number(exitStatus) % "\nRestart LINKUp to recover.");
     if(xc)
         xc->close();
-    if (rxTimer)
-        rxTimer->stop();
-    if(beaconTimer)
-        beaconTimer->stop();
-    if (centerTimer)
-        centerTimer->stop();
+    rxTimer->stop();
+    beaconTimer->stop();
+    centerTimer.stop();
+
 }
 
 void LINKUp::on_findFLDIGIButton_clicked()
@@ -1200,8 +1221,15 @@ void LINKUp::on_fldigiUseCurrentModemButton_clicked()
 
 void LINKUp::on_smarqButton_clicked()
 {
+    if(ui->destCallLineEdit->text().trimmed() == "ALL")
+    {
+        QMessageBox::information(this, "Choose Destination Station", "You must choose a destination station for use with SMARQ");
+        return;
+    }
     b_inSMARQSession = true;
     ARQPitcher * p = new ARQPitcher(this);
+    p->setSourceCall(ui->destCallLineEdit->text().trimmed().toUpper());
+    p->setDestCall(ui->CONFCallSign->text().trimmed().toUpper());
     connect(p, &ARQPitcher::sendBytes, this, &LINKUp::sendRawBytesToModem);
     connect(this, &LINKUp::smarqReply, p, &ARQPitcher::processIncoming);
     connect(p, &ARQPitcher::sessionFinished, this, &LINKUp::on_sessionFinished);
@@ -1254,15 +1282,37 @@ void LINKUp::closeEvent(QCloseEvent *event)
 {
 
     b_closingDown = true;
+    //qDebug()<<"closing down"<<b_closingDown;
     on_cfgSaveButton_clicked();
+//    if(fldigiProcess)
+//    {
+//        fldigiProcess->close();
+//        fldigiProcess->deleteLater();
+//    }
+//    if(beaconTimer)
+//    {
+//        beaconTimer->stop();
+//        beaconTimer->deleteLater();
+//    }
+//    if(rxTimer)
+//    {
+//        rxTimer->stop();
+//        rxTimer->deleteLater();
+//    }
+    if(loadedFile)
+        loadedFile->deleteLater();
     if(xc)
-    {
         xc->close();
-    }
     event->accept();
 }
 
 void LINKUp::on_actionExit_triggered()
 {
     this->close();
+}
+
+void LINKUp::on_chooseBeaconFileButton_clicked()
+{
+    const QString fileName = QFileDialog::getOpenFileName(this, "Choose a Text File for the Beacon",".", "Text Files (*.TXT *.txt)");
+    ui->beaconFileLabel->setText(fileName);
 }

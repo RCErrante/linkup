@@ -35,9 +35,9 @@ bool b_sendingFrames = false;
 bool b_framesSent = false;
 bool b_cQsl = false;
 bool b_sendingFills = false;
-const QString s_NWTemplate = "NW_%1_%2_%3_"; // QString::arg template for building a NW frame
-const QString s_FRTemplate = "FR_%1_%2_";  // template for a data frame
-const QString s_FITemplate = "FI_%1_";
+const QString s_NWTemplate = "NW_%1_%2_%3_%4_%5"; // QString::arg template for building a NW frame
+const QString s_FRTemplate = "FR_%1_%2_%3_%4";  // template for a data frame
+const QString s_FITemplate = "FI_%1_%2_%3";
 const QString DELIM("_");
 int i_msgNumber = 1; // starting message number
 QTimer *responseTimer = 0;
@@ -56,6 +56,16 @@ ARQPitcher::ARQPitcher(QWidget *parent) :
 ARQPitcher::~ARQPitcher()
 {
     delete ui;
+}
+
+void ARQPitcher::setDestCall(QString dest)
+{
+    s_destCall = dest;
+}
+
+void ARQPitcher::setSourceCall(QString source)
+{
+    s_sourceCall = source;
 }
 
 void ARQPitcher::on_findButton_clicked()
@@ -115,7 +125,7 @@ bool ARQPitcher::frameUpTheFile(const QString fileName)
         numFrames++;
     //qDebug()<<"numFrames"<<numFrames;
     // the Leader frame to set up the ARQ session containing message number, number of frames and the original filename
-    nwFrame = s_NWTemplate.arg(i_msgNumber).arg(numFrames).arg(sendFile);
+    nwFrame = s_NWTemplate.arg(s_destCall).arg(s_sourceCall).arg(i_msgNumber).arg(numFrames).arg(sendFile);
     //nwFrame.append(QString::number(numFrames)).append(DELIM).append(fileName.mid(fileName.lastIndexOf("/") + 1)).append(DELIM);
     nwFrame.append(QString::number(qChecksum(nwFrame.toLatin1(), nwFrame.length())));
     nwFrame.prepend("~1").append("~4");
@@ -128,7 +138,7 @@ bool ARQPitcher::frameUpTheFile(const QString fileName)
         {
             //QString rest(bytesToSend.mid(j)); // the final frame
             //fr = s_FRTemplate.arg(i_msgNumber).arg(i).arg(QString(qCompress(rest.toLatin1()).toBase64()));
-            fr = s_FRTemplate.arg(i_msgNumber).arg(i).toLatin1();
+            fr = s_FRTemplate.arg(s_destCall).arg(s_sourceCall).arg(i_msgNumber).arg(i).toLatin1();
             fr.append(bytesToSend.mid(j).toBase64()).append(DELIM);
             //fr.append(QString::number(i)).append(DELIM).append(DELIM).append(rest).append(DELIM);
             fr.append(QString::number(qChecksum(fr, fr.length())).toLatin1());
@@ -138,7 +148,7 @@ bool ARQPitcher::frameUpTheFile(const QString fileName)
         else
         {
             // ~1FR_1_3_text_CRC~4
-            fr = s_FRTemplate.arg(i_msgNumber).arg(i).toLatin1();
+            fr = s_FRTemplate.arg(s_destCall).arg(s_sourceCall).arg(i_msgNumber).arg(i).toLatin1();
             fr.append(bytesToSend.mid(j, frameSize).toBase64()).append(DELIM);
             //fr.append(QString::number(i)).append(DELIM).append(bytesToSend.mid(j, frameSize)).append(DELIM);
             fr.append(QString::number(qChecksum(fr, fr.length())).toLatin1());
@@ -167,14 +177,14 @@ void ARQPitcher::processIncoming(QByteArray inbytes)
     QString cmd(inbytes);
     inbytes.clear(); // clear the incoming bytes
     ui->messagesPlainTextEdit->appendHtml("<pre>RX: " + cmd + "</pre>");
-    if (cmd.contains("~1GO_"))
+    if (cmd.contains("~1GO_" % s_sourceCall))
     {
         b_sendingFrames = true;
         // ready to receive frames after NW
         sendTheWholeBlob();
     } else if(cmd.contains("~1FL"))
     {
-        if (cmd.contains("_RO_")) // got all frames ok
+        if (cmd.contains("_RO_") && cmd.contains(s_sourceCall)) // got all frames ok
         {
             qDebug()<<"rec'd RO frame";
             b_cQsl = true;
@@ -186,7 +196,7 @@ void ARQPitcher::processIncoming(QByteArray inbytes)
             b_sendingFills = true;
             // FILL request so send the requested frames again
             QStringList frameList;
-            // ~1FL_<msgnum>_<fill list>_<checksum>~4
+            // ~1FL_<source>_<dest>_<msgnum>_<fill list>_<checksum>~4
             int index = cmd.indexOf(DELIM, 5) + 1; // start of list
             int endex = cmd.indexOf(DELIM, index); // end of list
             QString fl = cmd.mid(index, endex - index);
@@ -203,7 +213,7 @@ void ARQPitcher::processIncoming(QByteArray inbytes)
             responseTimer->start(15000);
             ui->messagesPlainTextEdit->appendHtml("<p><pre>TX: SENDING FILLS: " % fl % "<br>" % s_out % "</pre></p>");
         }
-    } else if (cmd.startsWith("~1NA_"))
+    } else if (cmd.startsWith("~1NA_" % s_sourceCall))
     {
         // NACK arrives after a NW or FI frame is recognized
         // but does not pass checksum.
@@ -252,7 +262,7 @@ void ARQPitcher::sendFillQuery()
 
 QString ARQPitcher::createFillQuery()
 {
-    QString fillQuery = s_FITemplate.arg(i_msgNumber);
+    QString fillQuery = s_FITemplate.arg(s_destCall).arg(s_sourceCall).arg(i_msgNumber);
     fillQuery.append(QString::number(qChecksum(fillQuery.toLatin1(), fillQuery.length()))).prepend("~1").append("~4");
     return fillQuery;
 }

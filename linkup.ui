@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>753</width>
-    <height>537</height>
+    <width>700</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,6 +22,18 @@
   <property name="statusTip">
    <string extracomment="Welcome to LINKUp"/>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+border:2px solid #666;
+border-radius:3px;
+padding:3px;
+}
+QGroupBox {
+    background-color:#93afd2;
+    border: 2px solid gray;
+    border-radius: 3px;
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -31,6 +43,11 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Liberation Sans</family>
+       </font>
       </property>
       <property name="styleSheet">
        <string notr="true">QTabWidget::tab-bar {
@@ -71,16 +88,24 @@ QTabWidget::pane { /* The tab widget frame */
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="2" column="1" rowspan="4">
             <widget class="QGroupBox" name="groupBox_6">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="styleSheet">
-              <string notr="true">QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}
+              <string notr="true">
 QGroupBox {
 	background-color:lightgray;
-    border: 2px groove gray;
-    border-radius: 5px;
+    border: 2px solid gray;
+    border-radius: 3px;
 }</string>
              </property>
              <property name="title">
@@ -211,17 +236,20 @@ color:blue;
            </item>
            <item row="0" column="1">
             <widget class="QGroupBox" name="groupBox_5">
+             <property name="minimumSize">
+              <size>
+               <width>100</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>100</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="styleSheet">
-              <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="title">
               <string/>
@@ -243,7 +271,7 @@ border-radius:2px;
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>70</width>
+                  <width>16777215</width>
                   <height>16777215</height>
                  </size>
                 </property>
@@ -278,7 +306,7 @@ border-radius:2px;
                 <property name="maximumSize">
                  <size>
                   <width>70</width>
-                  <height>17</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -353,7 +381,7 @@ border-radius:2px;
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>17</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -393,17 +421,7 @@ border-radius:2px;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="title">
               <string/>
@@ -420,13 +438,13 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>20</height>
+                  <width>65</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -451,13 +469,13 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>20</height>
+                  <width>65</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -479,13 +497,13 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>20</height>
+                  <width>65</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -507,13 +525,13 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>16777215</width>
-                  <height>20</height>
+                  <width>65</width>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -535,18 +553,19 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>20</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
                   <family>Liberation Sans</family>
+                  <pointsize>8</pointsize>
                  </font>
                 </property>
                 <property name="toolTip">
@@ -562,13 +581,13 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>20</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
@@ -590,18 +609,19 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>20</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
                   <family>Liberation Sans</family>
+                  <pointsize>8</pointsize>
                  </font>
                 </property>
                 <property name="toolTip">
@@ -617,18 +637,19 @@ border-radius:2px;
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
-                  <height>20</height>
+                  <height>0</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>16777215</width>
-                  <height>20</height>
+                  <height>16777215</height>
                  </size>
                 </property>
                 <property name="font">
                  <font>
                   <family>Liberation Sans</family>
+                  <pointsize>8</pointsize>
                  </font>
                 </property>
                 <property name="toolTip">
@@ -677,17 +698,7 @@ border-radius:2px;
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string/>
@@ -815,233 +826,6 @@ border-radius:2px;
            <string/>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
-           <item row="0" column="0">
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="minimumSize">
-              <size>
-               <width>300</width>
-               <height>305</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>16777215</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
-             </property>
-             <property name="title">
-              <string>Configuration Values</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_4">
-              <item>
-               <layout class="QGridLayout" name="gridLayout">
-                <item row="9" column="1">
-                 <widget class="QCheckBox" name="autoStartFLDIGICheckBox">
-                  <property name="text">
-                   <string>Yes</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1">
-                 <widget class="QLineEdit" name="CONFGrid">
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit { 
-	background-color:white;
-}</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="1">
-                 <widget class="QLineEdit" name="CONFXMLRPCTCPPort">
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit { 
-	background-color:white;
-}</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0" alignment="Qt::AlignRight">
-                 <widget class="QLabel" name="label">
-                  <property name="text">
-                   <string>Call Sign</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="1">
-                 <widget class="QLineEdit" name="CONFXMLRPCIP">
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit { 
-	background-color:white;
-}</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0" alignment="Qt::AlignRight">
-                 <widget class="QLabel" name="label_2">
-                  <property name="text">
-                   <string>Tactical</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0" alignment="Qt::AlignRight">
-                 <widget class="QLabel" name="label_4">
-                  <property name="text">
-                   <string>TCP IP Address</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QLineEdit" name="CONFCallSign">
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit { 
-	background-color:white;
-}</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="1">
-                 <widget class="QCheckBox" name="useZULUCheckbox">
-                  <property name="text">
-                   <string>Use ZULU Time</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLineEdit" name="CONFName">
-                  <property name="styleSheet">
-                   <string notr="true">QLineEdit { 
-	background-color:white;
-}</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="1">
-                 <widget class="QLineEdit" name="beaconIntervalLineEdit"/>
-                </item>
-                <item row="2" column="0" alignment="Qt::AlignRight">
-                 <widget class="QLabel" name="label_3">
-                  <property name="text">
-                   <string>Grid</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="1">
-                 <widget class="QLineEdit" name="fldigiPathLineEdit">
-                  <property name="enabled">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0" alignment="Qt::AlignRight">
-                 <widget class="QLabel" name="label_5">
-                  <property name="text">
-                   <string>TCP Port</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="QLabel" name="label_8">
-                  <property name="text">
-                   <string>Time Format</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="0">
-                 <widget class="QLabel" name="label_6">
-                  <property name="text">
-                   <string>Beacon Interval</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QLabel" name="label_10">
-                  <property name="text">
-                   <string>Autostart FLDIGI?</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string>FLDIGI Arguments</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="1">
-                 <widget class="QLineEdit" name="fldigiCmdsLineEdit"/>
-                </item>
-                <item row="10" column="0" alignment="Qt::AlignRight">
-                 <widget class="QPushButton" name="cfgCancelButton">
-                  <property name="minimumSize">
-                   <size>
-                    <width>60</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>60</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Cancel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="1">
-                 <widget class="QPushButton" name="cfgSaveButton">
-                  <property name="minimumSize">
-                   <size>
-                    <width>60</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>60</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>Save</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QPushButton" name="findFLDIGIButton">
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="text">
-                   <string>FLDIGI Path</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </widget>
-           </item>
            <item row="1" column="0">
             <widget class="QGroupBox" name="groupBox_9">
              <property name="maximumSize">
@@ -1051,20 +835,15 @@ border-radius:2px;
               </size>
              </property>
              <property name="styleSheet">
-              <string notr="true">QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 3px;
-}</string>
+              <string notr="true"/>
              </property>
              <property name="title">
-              <string>FLDIGI options</string>
+              <string>  FLDIGI options</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
+              <property name="topMargin">
+               <number>17</number>
+              </property>
               <item row="0" column="1">
                <widget class="QLineEdit" name="fldigiCenterLineEdit">
                 <property name="minimumSize">
@@ -1079,6 +858,11 @@ border-radius:2px;
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
                 <property name="text">
                  <string/>
                 </property>
@@ -1091,6 +875,11 @@ border-radius:2px;
                   <width>110</width>
                   <height>16777215</height>
                  </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
                 </property>
                 <property name="text">
                  <string>Lock Center @</string>
@@ -1105,10 +894,20 @@ border-radius:2px;
                   <height>16777215</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
                </widget>
               </item>
               <item row="2" column="2">
                <widget class="QPushButton" name="fldigiUseCurrentModemButton">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Use Current</string>
                 </property>
@@ -1116,14 +915,16 @@ border-radius:2px;
               </item>
               <item row="0" column="2">
                <widget class="QCheckBox" name="fldigiUsePSMCheckBox">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
                 <property name="maximumSize">
                  <size>
                   <width>75</width>
                   <height>16777215</height>
                  </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
                 </property>
                 <property name="text">
                  <string>Use PSM</string>
@@ -1132,8 +933,61 @@ border-radius:2px;
               </item>
               <item row="2" column="0">
                <widget class="QLabel" name="label_12">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
                 <property name="text">
                  <string>Def. Modem</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPushButton" name="cfgCancelButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Cancel</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QPushButton" name="cfgSaveButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>24</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Save</string>
                 </property>
                </widget>
               </item>
@@ -1155,10 +1009,16 @@ border-radius:2px;
            </item>
            <item row="0" column="1" rowspan="3">
             <widget class="QPlainTextEdit" name="cfgHelpTextArea">
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
              <property name="plainText">
               <string>Call Sign is the call sign to be used for this program
 
-Tactical may be used for a  tactical name, as a secondary identifier.
+Tactical may be used for a  tactical name, as a secondary identifier. (Currently UNUSED)
 
 Grid may be used for the grid locator of appropriate length to provide a general location.
 
@@ -1166,7 +1026,9 @@ TCP IP Address is the IP address associated with FLDIGI.  The default is 127.0.0
 
 TCP Port is the TCP port number associated with the sound modem.  The default is the FLDIGI default of 7362.
 
-Beacon Interval &gt; 0 wil send a beacon to ALL periodically.  Zero value disables.
+Beacon Interval &gt; 0 wil send a beacon to ALL periodically.  Zero value disables.  Default text is a link to LINKUp and the time.  If you choose a beacon file (see below) it will send that text instead, along with the current time.
+
+Beacon File button allows you to choose a small text file to be sent instead of the standard beacon text.  You may with to use some external automation to update this text file from time to time, such as weather condx, propagation, etc.
 
 Use ZULU Time allows the user to show beacon times in ZULU time instead of local time.
 
@@ -1184,6 +1046,311 @@ Click the Cancel button to discard any changes.</string>
              </property>
             </widget>
            </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="minimumSize">
+              <size>
+               <width>300</width>
+               <height>330</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">
+</string>
+             </property>
+             <property name="title">
+              <string>  Configuration Values</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_3">
+              <property name="topMargin">
+               <number>17</number>
+              </property>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Tactical</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Autostart FLDIGI?</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QLineEdit" name="fldigiCmdsLineEdit">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>TCP Port</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QLineEdit" name="beaconIntervalLineEdit">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="useZULUCheckbox">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Use ZULU Time</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Beacon Interval</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>TCP IP Address</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QLineEdit" name="CONFGrid">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit { 
+	background-color:white;
+}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Grid</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="CONFXMLRPCIP">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit { 
+	background-color:white;
+}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="QCheckBox" name="autoStartFLDIGICheckBox">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Yes</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="CONFCallSign">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit { 
+	background-color:white;
+}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QLineEdit" name="CONFXMLRPCTCPPort">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit { 
+	background-color:white;
+}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QLineEdit" name="fldigiPathLineEdit">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QPushButton" name="findFLDIGIButton">
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>FLDIGI Path</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QLabel" name="beaconFileLabel">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QPushButton" name="chooseBeaconFileButton">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Beacon FIle</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="CONFName">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QLineEdit { 
+	background-color:white;
+}</string>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Time Format</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>Call Sign</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QLabel" name="label_11">
+                <property name="font">
+                 <font>
+                  <family>Liberation Sans</family>
+                 </font>
+                </property>
+                <property name="text">
+                 <string>FLDIGI Arguments</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -1196,25 +1363,35 @@ Click the Cancel button to discard any changes.</string>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
          <widget class="QGroupBox" name="groupBox_8">
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>350</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Liberation Sans</family>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
+           <string notr="true">
+</string>
           </property>
           <property name="title">
-           <string>Choose Modems to Display</string>
+           <string>  Choose Modems to Display</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
+           <property name="topMargin">
+            <number>17</number>
+           </property>
            <item row="0" column="0">
             <widget class="QCheckBox" name="checkBox_48">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK4</string>
              </property>
@@ -1222,6 +1399,11 @@ border-radius:2px;
            </item>
            <item row="0" column="1">
             <widget class="QCheckBox" name="checkBox_60">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR16</string>
              </property>
@@ -1229,6 +1411,11 @@ border-radius:2px;
            </item>
            <item row="0" column="2">
             <widget class="QCheckBox" name="checkBox_36">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-4-250</string>
              </property>
@@ -1236,6 +1423,11 @@ border-radius:2px;
            </item>
            <item row="0" column="3">
             <widget class="QCheckBox" name="checkBox_2">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-64-2K</string>
              </property>
@@ -1243,6 +1435,11 @@ border-radius:2px;
            </item>
            <item row="0" column="4">
             <widget class="QCheckBox" name="checkBox_24">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK125</string>
              </property>
@@ -1250,6 +1447,11 @@ border-radius:2px;
            </item>
            <item row="1" column="0">
             <widget class="QCheckBox" name="checkBox_49">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK8</string>
              </property>
@@ -1257,6 +1459,11 @@ border-radius:2px;
            </item>
            <item row="1" column="1">
             <widget class="QCheckBox" name="checkBox_38">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR22</string>
              </property>
@@ -1267,6 +1474,11 @@ border-radius:2px;
            </item>
            <item row="1" column="2">
             <widget class="QCheckBox" name="checkBox_25">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-8-250</string>
              </property>
@@ -1274,6 +1486,11 @@ border-radius:2px;
            </item>
            <item row="1" column="3">
             <widget class="QCheckBox" name="checkBox_12">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK31</string>
              </property>
@@ -1281,6 +1498,11 @@ border-radius:2px;
            </item>
            <item row="1" column="4">
             <widget class="QCheckBox" name="checkBox_13">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK250</string>
              </property>
@@ -1288,6 +1510,11 @@ border-radius:2px;
            </item>
            <item row="2" column="0">
             <widget class="QCheckBox" name="checkBox_50">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK11</string>
              </property>
@@ -1295,6 +1522,11 @@ border-radius:2px;
            </item>
            <item row="2" column="1">
             <widget class="QCheckBox" name="checkBox_37">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR25x4</string>
              </property>
@@ -1302,6 +1534,11 @@ border-radius:2px;
            </item>
            <item row="2" column="2">
             <widget class="QCheckBox" name="checkBox_26">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-4-500</string>
              </property>
@@ -1309,6 +1546,11 @@ border-radius:2px;
            </item>
            <item row="2" column="3">
             <widget class="QCheckBox" name="checkBox_11">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK63</string>
              </property>
@@ -1316,6 +1558,11 @@ border-radius:2px;
            </item>
            <item row="2" column="4">
             <widget class="QCheckBox" name="checkBox_14">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK500</string>
              </property>
@@ -1323,6 +1570,11 @@ border-radius:2px;
            </item>
            <item row="3" column="0">
             <widget class="QCheckBox" name="checkBox_51">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK16</string>
              </property>
@@ -1330,6 +1582,11 @@ border-radius:2px;
            </item>
            <item row="3" column="1">
             <widget class="QCheckBox" name="checkBox_39">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR50x1</string>
              </property>
@@ -1337,6 +1594,11 @@ border-radius:2px;
            </item>
            <item row="3" column="2">
             <widget class="QCheckBox" name="checkBox_27">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-8-500</string>
              </property>
@@ -1344,6 +1606,11 @@ border-radius:2px;
            </item>
            <item row="3" column="3">
             <widget class="QCheckBox" name="checkBox_10">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK63F</string>
              </property>
@@ -1351,6 +1618,11 @@ border-radius:2px;
            </item>
            <item row="3" column="4">
             <widget class="QCheckBox" name="checkBox_15">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK1000</string>
              </property>
@@ -1358,6 +1630,11 @@ border-radius:2px;
            </item>
            <item row="4" column="0">
             <widget class="QCheckBox" name="checkBox_52">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK22</string>
              </property>
@@ -1365,6 +1642,11 @@ border-radius:2px;
            </item>
            <item row="4" column="1">
             <widget class="QCheckBox" name="checkBox_40">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR50x2</string>
              </property>
@@ -1372,6 +1654,11 @@ border-radius:2px;
            </item>
            <item row="4" column="2">
             <widget class="QCheckBox" name="checkBox_28">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-16-500</string>
              </property>
@@ -1379,6 +1666,11 @@ border-radius:2px;
            </item>
            <item row="4" column="3">
             <widget class="QCheckBox" name="checkBox_9">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK125</string>
              </property>
@@ -1386,6 +1678,11 @@ border-radius:2px;
            </item>
            <item row="4" column="4">
             <widget class="QCheckBox" name="checkBox_16">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK125FL</string>
              </property>
@@ -1393,6 +1690,11 @@ border-radius:2px;
            </item>
            <item row="5" column="0">
             <widget class="QCheckBox" name="checkBox_53">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK32</string>
              </property>
@@ -1400,6 +1702,11 @@ border-radius:2px;
            </item>
            <item row="5" column="1">
             <widget class="QCheckBox" name="checkBox_41">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR100</string>
              </property>
@@ -1407,6 +1714,11 @@ border-radius:2px;
            </item>
            <item row="5" column="2">
             <widget class="QCheckBox" name="checkBox_29">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-8-1K</string>
              </property>
@@ -1414,6 +1726,11 @@ border-radius:2px;
            </item>
            <item row="5" column="3">
             <widget class="QCheckBox" name="checkBox_8">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK250</string>
              </property>
@@ -1421,6 +1738,11 @@ border-radius:2px;
            </item>
            <item row="5" column="4">
             <widget class="QCheckBox" name="checkBox_17">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK125F</string>
              </property>
@@ -1428,6 +1750,11 @@ border-radius:2px;
            </item>
            <item row="6" column="0">
             <widget class="QCheckBox" name="checkBox_54">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK64</string>
              </property>
@@ -1435,6 +1762,11 @@ border-radius:2px;
            </item>
            <item row="6" column="1">
             <widget class="QCheckBox" name="checkBox_42">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63-500S</string>
              </property>
@@ -1442,6 +1774,11 @@ border-radius:2px;
            </item>
            <item row="6" column="2">
             <widget class="QCheckBox" name="checkBox_30">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-16-1K</string>
              </property>
@@ -1449,6 +1786,11 @@ border-radius:2px;
            </item>
            <item row="6" column="3">
             <widget class="QCheckBox" name="checkBox_7">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK500</string>
              </property>
@@ -1456,6 +1798,11 @@ border-radius:2px;
            </item>
            <item row="6" column="4">
             <widget class="QCheckBox" name="checkBox_18">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK250FL</string>
              </property>
@@ -1463,6 +1810,11 @@ border-radius:2px;
            </item>
            <item row="7" column="0">
             <widget class="QCheckBox" name="checkBox_55">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MFSK128</string>
              </property>
@@ -1470,6 +1822,11 @@ border-radius:2px;
            </item>
            <item row="7" column="1">
             <widget class="QCheckBox" name="checkBox_43">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63 500L</string>
              </property>
@@ -1477,6 +1834,11 @@ border-radius:2px;
            </item>
            <item row="7" column="2">
             <widget class="QCheckBox" name="checkBox_31">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-32-1K</string>
              </property>
@@ -1484,6 +1846,11 @@ border-radius:2px;
            </item>
            <item row="7" column="3">
             <widget class="QCheckBox" name="checkBox_6">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>BPSK1000</string>
              </property>
@@ -1491,6 +1858,11 @@ border-radius:2px;
            </item>
            <item row="7" column="4">
             <widget class="QCheckBox" name="checkBox_19">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK250F</string>
              </property>
@@ -1498,6 +1870,11 @@ border-radius:2px;
            </item>
            <item row="8" column="0">
             <widget class="QCheckBox" name="checkBox_56">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR4</string>
              </property>
@@ -1505,6 +1882,11 @@ border-radius:2px;
            </item>
            <item row="8" column="1">
             <widget class="QCheckBox" name="checkBox_44">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63 1KS</string>
              </property>
@@ -1512,6 +1894,11 @@ border-radius:2px;
            </item>
            <item row="8" column="2">
             <widget class="QCheckBox" name="checkBox_32">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-64-1K</string>
              </property>
@@ -1519,6 +1906,11 @@ border-radius:2px;
            </item>
            <item row="8" column="3">
             <widget class="QCheckBox" name="checkBox_5">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>PSK125R</string>
              </property>
@@ -1526,6 +1918,11 @@ border-radius:2px;
            </item>
            <item row="8" column="4">
             <widget class="QCheckBox" name="checkBox_20">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK500F</string>
              </property>
@@ -1533,6 +1930,11 @@ border-radius:2px;
            </item>
            <item row="9" column="0">
             <widget class="QCheckBox" name="checkBox_57">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR5</string>
              </property>
@@ -1540,6 +1942,11 @@ border-radius:2px;
            </item>
            <item row="9" column="1">
             <widget class="QCheckBox" name="checkBox_45">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63-1KL</string>
              </property>
@@ -1547,6 +1954,11 @@ border-radius:2px;
            </item>
            <item row="9" column="2">
             <widget class="QCheckBox" name="checkBox_33">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-8-1K</string>
              </property>
@@ -1554,6 +1966,11 @@ border-radius:2px;
            </item>
            <item row="9" column="3">
             <widget class="QCheckBox" name="checkBox_4">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>PSK250R</string>
              </property>
@@ -1561,6 +1978,11 @@ border-radius:2px;
            </item>
            <item row="9" column="4">
             <widget class="QCheckBox" name="checkBox_21">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK1000F</string>
              </property>
@@ -1568,6 +1990,11 @@ border-radius:2px;
            </item>
            <item row="10" column="0">
             <widget class="QCheckBox" name="checkBox_58">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR8</string>
              </property>
@@ -1575,6 +2002,11 @@ border-radius:2px;
            </item>
            <item row="10" column="1">
             <widget class="QCheckBox" name="checkBox_46">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63-2KS</string>
              </property>
@@ -1582,6 +2014,11 @@ border-radius:2px;
            </item>
            <item row="10" column="2">
             <widget class="QCheckBox" name="checkBox_34">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-16-2K</string>
              </property>
@@ -1589,6 +2026,11 @@ border-radius:2px;
            </item>
            <item row="10" column="3">
             <widget class="QCheckBox" name="checkBox_3">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>PSK500R</string>
              </property>
@@ -1596,6 +2038,11 @@ border-radius:2px;
            </item>
            <item row="10" column="4">
             <widget class="QCheckBox" name="checkBox_22">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>8PSK1200F</string>
              </property>
@@ -1603,6 +2050,11 @@ border-radius:2px;
            </item>
            <item row="11" column="0">
             <widget class="QCheckBox" name="checkBox_59">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>THOR11</string>
              </property>
@@ -1610,6 +2062,11 @@ border-radius:2px;
            </item>
            <item row="11" column="1">
             <widget class="QCheckBox" name="checkBox_47">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>MT63-2KL</string>
              </property>
@@ -1617,6 +2074,11 @@ border-radius:2px;
            </item>
            <item row="11" column="2">
             <widget class="QCheckBox" name="checkBox_35">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Olivia-32-2K</string>
              </property>
@@ -1624,6 +2086,11 @@ border-radius:2px;
            </item>
            <item row="11" column="3">
             <widget class="QCheckBox" name="checkBox">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>PSK1000R</string>
              </property>
@@ -1631,6 +2098,11 @@ border-radius:2px;
            </item>
            <item row="11" column="4">
             <widget class="QCheckBox" name="checkBox_23">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>PSK63RC4</string>
              </property>
@@ -1653,18 +2125,13 @@ border-radius:2px;
             <height>50</height>
            </size>
           </property>
+          <property name="font">
+           <font>
+            <family>Liberation Sans</family>
+           </font>
+          </property>
           <property name="styleSheet">
-           <string notr="true">QGroupBox {
-    background-color:#93afd2;
-    border: 2px groove gray;
-    border-radius: 5px;
-}
-
-QPushButton {
- background-color:darkgray;
-border:2px groove gray;
-border-radius:2px;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string/>
@@ -1672,6 +2139,11 @@ border-radius:2px;
           <layout class="QHBoxLayout" name="horizontalLayout_7">
            <item>
             <widget class="QCheckBox" name="modemsSelectAllCheckbox">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select all modems listed below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -1682,6 +2154,11 @@ border-radius:2px;
            </item>
            <item>
             <spacer name="horizontalSpacer_2">
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -1707,6 +2184,11 @@ border-radius:2px;
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Save</string>
              </property>
@@ -1726,6 +2208,11 @@ border-radius:2px;
                <height>16777215</height>
               </size>
              </property>
+             <property name="font">
+              <font>
+               <family>Liberation Sans</family>
+              </font>
+             </property>
              <property name="text">
               <string>Cancel</string>
              </property>
@@ -1733,6 +2220,19 @@ border-radius:2px;
            </item>
           </layout>
          </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -1746,8 +2246,8 @@ border-radius:2px;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>753</width>
-     <height>21</height>
+     <width>700</width>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1780,19 +2280,6 @@ border-radius:2px;
   <tabstop>destCallLineEdit</tabstop>
   <tabstop>EMCONCheckbox</tabstop>
   <tabstop>logButton</tabstop>
-  <tabstop>CONFCallSign</tabstop>
-  <tabstop>CONFName</tabstop>
-  <tabstop>CONFGrid</tabstop>
-  <tabstop>CONFXMLRPCIP</tabstop>
-  <tabstop>CONFXMLRPCTCPPort</tabstop>
-  <tabstop>beaconIntervalLineEdit</tabstop>
-  <tabstop>useZULUCheckbox</tabstop>
-  <tabstop>findFLDIGIButton</tabstop>
-  <tabstop>fldigiPathLineEdit</tabstop>
-  <tabstop>fldigiCmdsLineEdit</tabstop>
-  <tabstop>autoStartFLDIGICheckBox</tabstop>
-  <tabstop>cfgCancelButton</tabstop>
-  <tabstop>cfgSaveButton</tabstop>
   <tabstop>fldigiLockCheckBox</tabstop>
   <tabstop>fldigiCenterLineEdit</tabstop>
   <tabstop>fldigiUsePSMCheckBox</tabstop>

@@ -105,6 +105,8 @@ private slots:
     void closeEvent(QCloseEvent *event);
     void on_actionExit_triggered();
 
+    void on_chooseBeaconFileButton_clicked();
+
 private:
     bool b_closingDown = false;
     bool b_EMCON = false;
@@ -114,6 +116,8 @@ private:
     bool b_useZULUTime = false;
     bool b_xmitInhibit = false;
     bool b_inSMARQSession = false;
+    //unsigned short proto = 0;
+    //const QString version = "20160826";
     const QString version = __DATE__;
     const QByteArray qbaSOH = "~1";
     const QByteArray qbaEOT = "~4";
@@ -122,7 +126,10 @@ private:
     QString mycall;
     QString currModem;
     QString currentSPFileName;
+    QString s_beaconFile;
     const QString NEWLINE = "\r\n";
+    const QString STYLE_RED = "<p style=color:red><pre>";
+    const QString END_HTML = "</pre></p>";
     QByteArray inbytes;
     QByteArray PROTO1 = QByteArrayLiteral("~11");
     QByteArray PROTO2 = QByteArrayLiteral("~12");

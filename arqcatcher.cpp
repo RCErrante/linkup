@@ -155,7 +155,11 @@ void ARQCatcher::processFrame()
 void ARQCatcher::processNewFrame(const QString inString)
 {
     framesReceived.clear();
-    int index = inString.indexOf("_") + 1; // at the msg number field
+    int index = inString.indexOf("_")+ 1; // at the source call field
+    s_sourceCall = inString.mid(index, inString.indexOf("_", index));
+    index = inString.indexOf("_", index) + 1; // at the dest call field
+    s_destCall = inString.mid(index, inString.indexOf("_", index));
+    index = inString.indexOf("_", index) + 1; // at the msg number field
     s_msgNumber = inString.mid(index, inString.indexOf("_", index) - index);
     //qDebug()<<"s_msgNumber"<<s_msgNumber;
     i_cMsgNumber = s_msgNumber.toInt();
@@ -187,7 +191,11 @@ void ARQCatcher::processNewFrame(const QString inString)
 
 void ARQCatcher::processDataFrame(const QString inString)
 {
-    int index = inString.indexOf("_") + 1; // at the msg number field
+    int index = inString.indexOf("_")+ 1; // at the source call field
+    s_sourceCall = inString.mid(index, inString.indexOf("_", index));
+    index = inString.indexOf("_", index) + 1; // at the dest call field
+    s_destCall = inString.mid(index, inString.indexOf("_", index));
+    index = inString.indexOf("_", index) + 1; // at the msg number field
     QString msgNum = inString.mid(index, inString.indexOf("_", index) - index);
     index = inString.indexOf("_", index) + 1; // at the frame number field
     int frameNum = inString.mid(index, inString.indexOf("_", index) - index).toInt();
@@ -218,12 +226,12 @@ void ARQCatcher::processFillFrame(const QString inString)
     qDebug()<<"frames recd count"<<framesReceived.count();
     if (i_numFrames == framesReceived.count())
     {
-        QTimer::singleShot(2000, this, &ARQCatcher::sendROCommand);
+        QTimer::singleShot(2000, this, SLOT(sendROCommand));
     }
     else
     {
         qDebug()<<"frame count does not match"<<i_numFrames<<framesReceived.count();
-        QString cmd = "FL_" % QString::number(i_cMsgNumber) % DELIM;
+        QString cmd = "FL_" % s_sourceCall %"_" % s_destCall % "_" % QString::number(i_cMsgNumber) % DELIM;
 
         // evaluate which frames need to be resent
         for(int f = 0; f < i_numFrames; f++)
@@ -268,7 +276,7 @@ void ARQCatcher::on_sendCmdButton_clicked()
 void ARQCatcher::sendGOCommand()
 {
     // the NW frame was recognized and passed checksum, so tell the sender to go ahead
-    QString cmd = "GO_" % QString::number(i_cMsgNumber) % "_";
+    QString cmd = "GO_" % s_sourceCall % "_" % s_destCall % "_" % QString::number(i_cMsgNumber) % "_";
     cmd.append(QString::number(qChecksum(cmd.toLatin1(), cmd.length()))).prepend("~1").append("~4");
     ui->messagesPlainTextEdit->appendHtml("<p><pre>TX " % cmd % "</pre></p>");
     //catcherOut->write(cmd.toLatin1());
@@ -280,7 +288,7 @@ void ARQCatcher::sendNACommand()
 {
     // NACK, the NW was recognized but did not pass checksum...future may include LQA information
     // so the sending station may choose to change data rate or interleave or both.
-    QString cmd = "NA_";
+    QString cmd = "NA_" % s_sourceCall % "_" % s_destCall % "_";
     cmd.append(QString::number(qChecksum(cmd.toLatin1(), cmd.length()))).prepend("~1").append("~4");
     ui->messagesPlainTextEdit->appendHtml("<p><pre>TX " % cmd % "</pre></p>");
     //catcherOut->write(cmd.toLatin1());
@@ -289,7 +297,7 @@ void ARQCatcher::sendNACommand()
 
 void ARQCatcher::sendROCommand()
 {
-    QString cmd = "FL_" %QString::number(i_cMsgNumber) % "_RO_";
+    QString cmd = "FL_" % s_sourceCall % "_" % s_destCall %"_" % QString::number(i_cMsgNumber) % "_RO_";
     cmd.append(QString::number(qChecksum(cmd.toLatin1(), cmd.length()))).prepend("~1").append("~4");
     ui->messagesPlainTextEdit->appendHtml("<p><pre>TX " % cmd % "</pre></p>");
     //catcherOut->write(cmd.toLatin1());
